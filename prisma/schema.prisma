@@ -18,6 +18,7 @@ model Feedback {
   product   String
   rating    Int?
   verbatim  String
+  priority  Int      @default(0)
   category  String   @default("low-quality")
   createdAt DateTime @default(now())
 }
