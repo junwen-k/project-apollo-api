@@ -112,7 +112,10 @@ app.get('/feedbacks', async (req, res) => {
       priority: priority ? Number(priority) : undefined,
       rating: rating ? Number(rating) : undefined,
     },
-    orderBy: { createdAt: 'desc' },
+    orderBy: {
+      priority: 'desc',
+      createdAt: 'desc',
+    },
     take: limit ? Number(limit) : undefined,
     skip: offset ? Number(offset) : undefined,
   });
