@@ -110,10 +110,11 @@ app.get('/feedbacks', async (req, res) => {
       product: product?.toString(),
       priority: priority ? Number(priority) : undefined,
       rating: rating ? Number(rating) : undefined,
-      OR: [
-        { email: { contains: keyword?.toString() } },
-        { name: { contains: keyword?.toString() } },
-      ],
+      // FIXME: if have time, fix keyword search
+      // OR: [
+      //   { email: { contains: keyword?.toString() } },
+      //   { name: { contains: keyword?.toString() } },
+      // ],
     },
     orderBy: [{ priority: 'desc' }, { createdAt: 'desc' }],
     take: limit ? Number(limit) : undefined,
