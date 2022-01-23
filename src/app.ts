@@ -109,11 +109,13 @@ app.get('/feedbacks', async (req, res) => {
   const feedbacks = await prisma.feedback.findMany({
     where: {
       category: category?.toString(),
-      email: { contains: keyword?.toString() },
-      name: { contains: keyword?.toString() },
       product: product?.toString(),
       priority: priority ? Number(priority) : undefined,
       rating: rating ? Number(rating) : undefined,
+      OR: [
+        { email: { contains: keyword?.toString() } },
+        { name: { contains: keyword?.toString() } },
+      ],
     },
     orderBy: [{ priority: 'desc' }, { createdAt: 'desc' }],
     take: limit ? Number(limit) : undefined,
